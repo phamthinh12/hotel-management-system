@@ -1,0 +1,133 @@
+@model IEnumerable<WebKhachSan.Models.HoaDon>
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Quản Lý Hóa Đơn";
+}
+
+<div class="container-fluid py-4">
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>✓ Thành công!</strong> @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>✗ Lỗi!</strong> @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+            <h1 class="h3 mb-0" style="color: var(--primary); font-weight: 800; font-family: 'Manrope';">
+                💳 Danh Sách Hóa Đơn
+            </h1>
+            <p class="text-muted small mt-2">Quản lý tất cả các hóa đơn thanh toán</p>
+        </div>
+        <a asp-action="Create" class="btn btn-primary" style="background: linear-gradient(135deg, #00236f, #1e3a8a);">
+            <span class="material-icons" style="vertical-align: middle; margin-right: 0.5rem; font-size: 1.25rem;">add_circle</span>
+            Tạo Hóa Đơn Mới
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead style="background: #f8f9ff; border-bottom: 2px solid #e6eeff;">
+                    <tr>
+                        <th style="color: #00236f; font-weight: 700;">Mã HĐ</th>
+                        <th style="color: #00236f; font-weight: 700;">Khách Hàng</th>
+                        <th style="color: #00236f; font-weight: 700;">Nhân Viên Lập</th>
+                        <th style="color: #00236f; font-weight: 700;">Ngày Lập</th>
+                        <th style="color: #00236f; font-weight: 700; text-align: right;">Tổng Tiền</th>
+                        <th style="color: #00236f; font-weight: 700; text-align: center;">Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr style="border-bottom: 1px solid #e9ecef;">
+                                <td style="font-weight: 600; color: #00236f;">@item.MaHoaDon</td>
+                                <td>
+                                    <div style="font-weight: 500;">@item.MaThuePhongNavigation?.MaKhachHangNavigation?.TenKhachHang</div>
+                                    <small style="color: #6c757d;">@item.MaThuePhong</small>
+                                </td>
+                                <td>@item.MaNhanVienNavigation?.TenNhanVien</td>
+                                <td>@(item.NgayLap?.ToString("dd/MM/yyyy HH:mm") ?? "---")</td>
+                                <td style="text-align: right; font-weight: 700; color: #00236f;">
+                                    @((item.TongTien?.ToString("N0") ?? "0") + " VND")
+                                </td>
+                                <td style="text-align: center;">
+                                    <a asp-action="Details" asp-route-id="@item.MaHoaDon" 
+                                       class="btn btn-sm btn-outline-info" title="Xem chi tiết">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.MaHoaDon" 
+                                       class="btn btn-sm btn-outline-warning" title="Chỉnh sửa">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.MaHoaDon" 
+                                       class="btn btn-sm btn-outline-danger" title="Xóa">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 3rem 1rem; color: #757682;">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">📋</div>
+                                <p style="margin: 0;">Chưa có hóa đơn nào</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div style="margin-top: 1.5rem; color: #6c757d; font-size: 0.9rem;">
+        <strong>Tổng cộng:</strong> @Model.Count() hóa đơn
+        @if (Model.Any())
+        {
+            <strong style="margin-left: 2rem;">|</strong>
+            <strong style="margin-left: 2rem;">Tổng doanh thu:</strong> @(Model.Sum(hd => hd.TongTien ?? 0).ToString("N0") + " VND")
+        }
+    </div>
+</div>
+
+<style>
+    .btn-outline-info {
+        color: #0dcaf0;
+        border-color: #0dcaf0;
+    }
+    .btn-outline-info:hover {
+        background-color: #0dcaf0;
+        color: white;
+    }
+    .btn-outline-warning {
+        color: #ffc107;
+        border-color: #ffc107;
+    }
+    .btn-outline-warning:hover {
+        background-color: #ffc107;
+        color: white;
+    }
+    .btn-outline-danger {
+        color: #dc3545;
+        border-color: #dc3545;
+    }
+    .btn-outline-danger:hover {
+        background-color: #dc3545;
+        color: white;
+    }
+</style>

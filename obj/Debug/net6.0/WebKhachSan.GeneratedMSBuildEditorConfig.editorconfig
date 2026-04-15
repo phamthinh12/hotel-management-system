@@ -9,181 +9,209 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebKhachSan
 build_property.RootNamespace = WebKhachSan
-build_property.ProjectDir = C:\Users\ADMIN\OneDrive\Máy tính\TTTN\hotel-management-system\
+build_property.ProjectDir = C:\Users\ADMIN\OneDrive\Máy tính\TTTN\hotel-management-system\hotel-management-system\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ADMIN\OneDrive\Máy tính\TTTN\hotel-management-system
+build_property.MSBuildProjectDirectory = C:\Users\ADMIN\OneDrive\Máy tính\TTTN\hotel-management-system\hotel-management-system
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Account/AccessDenied.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Account/Login.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/DatPhong/CreateModern.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/DatPhong/CreateModern.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0UGhvbmdcQ3JlYXRlTW9kZXJuLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/DatPhong/Delete.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/DatPhong/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0UGhvbmdcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/DatPhong/Details.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/DatPhong/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0UGhvbmdcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/DatPhong/Edit.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/DatPhong/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0UGhvbmdcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/DatPhong/Index.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/DatPhong/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0UGhvbmdcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/GiaPhong/Create.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/GiaPhong/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lhUGhvbmdcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/GiaPhong/CreateBulk.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/GiaPhong/CreateBulk.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lhUGhvbmdcQ3JlYXRlQnVsay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/GiaPhong/Delete.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/GiaPhong/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lhUGhvbmdcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/GiaPhong/Details.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/GiaPhong/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lhUGhvbmdcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/GiaPhong/Edit.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/GiaPhong/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lhUGhvbmdcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/GiaPhong/Index.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/GiaPhong/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lhUGhvbmdcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Home/BookingPublic.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/HoaDon/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9hRG9uXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/HoaDon/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9hRG9uXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/HoaDon/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9hRG9uXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/HoaDon/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9hRG9uXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/HoaDon/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9hRG9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Home/BookingPublic.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCb29raW5nUHVibGljLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Home/Index.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Home/Privacy.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/KhachHang/Create.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/KhachHang/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/KhachHang/Delete.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/KhachHang/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/KhachHang/Details.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/KhachHang/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/KhachHang/Edit.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/KhachHang/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/KhachHang/Index.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/KhachHang/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/LoaiPhong/Create.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/LoaiPhong/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9haVBob25nXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/LoaiPhong/Delete.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/LoaiPhong/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9haVBob25nXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/LoaiPhong/Details.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/LoaiPhong/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9haVBob25nXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/LoaiPhong/Edit.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/LoaiPhong/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9haVBob25nXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/LoaiPhong/Index.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/LoaiPhong/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9haVBob25nXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/NhanVien/Create.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/NhanVien/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/NhanVien/Details.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/NhanVien/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/NhanVien/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5cRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/NhanVien/Edit.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/NhanVien/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Phong/Create.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/NhanVien/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Phong/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmdcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Phong/Delete.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Phong/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmdcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Phong/Details.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Phong/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmdcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Phong/Edit.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Phong/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmdcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Phong/Index.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Phong/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhvbmdcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Shared/Error.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Shared/_DashboardLayout.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Shared/_DashboardLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EYXNoYm9hcmRMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/ThuePhong/Index.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/ThuePhong/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGh1ZVBob25nXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/ThuePhong/_AvailableRoomsModalBody.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/ThuePhong/_AvailableRoomsModalBody.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGh1ZVBob25nXF9BdmFpbGFibGVSb29tc01vZGFsQm9keS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/ThuePhong/_CreateOfflineRentalForm.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/ThuePhong/_CreateOfflineRentalForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGh1ZVBob25nXF9DcmVhdGVPZmZsaW5lUmVudGFsRm9ybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/_ViewImports.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/_ViewStart.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/Views/Shared/_Layout.cshtml]
+[C:/Users/ADMIN/OneDrive/Máy tính/TTTN/hotel-management-system/hotel-management-system/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-e1oue14spe

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\TTTN\\hotel-management-system\\WebKhachSan.csproj": {}
+    "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\TTTN\\hotel-management-system\\hotel-management-system\\WebKhachSan.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\TTTN\\hotel-management-system\\WebKhachSan.csproj": {
+    "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\TTTN\\hotel-management-system\\hotel-management-system\\WebKhachSan.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\TTTN\\hotel-management-system\\WebKhachSan.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\TTTN\\hotel-management-system\\hotel-management-system\\WebKhachSan.csproj",
         "projectName": "WebKhachSan",
-        "projectPath": "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\TTTN\\hotel-management-system\\WebKhachSan.csproj",
+        "projectPath": "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\TTTN\\hotel-management-system\\hotel-management-system\\WebKhachSan.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\TTTN\\hotel-management-system\\obj\\",
+        "outputPath": "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\TTTN\\hotel-management-system\\hotel-management-system\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

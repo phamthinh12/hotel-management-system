@@ -13,10 +13,6 @@
             </h1>
             <p class="text-muted small mt-2">Quản lý tất cả các đơn đặt phòng</p>
         </div>
-        <a asp-action="CreateModern" class="btn btn-primary" style="background: linear-gradient(135deg, #00236f, #1e3a8a);">
-            <span class="material-icons" style="vertical-align: middle; margin-right: 0.5rem; font-size: 1.25rem;">add_circle</span>
-            Tạo Đơn Mới
-        </a>
     </div>
 
     @if (Model != null && Model.Count() > 0)
@@ -80,7 +76,7 @@
     {
         <div style="text-align: center; padding: 3rem; background: #f8f9ff; border-radius: 1rem;">
             <span class="material-icons" style="font-size: 4rem; color: #c5c5d3; margin-bottom: 1rem;">folder_open</span>
-            <p style="color: #757682; font-size: 1.125rem;">Chưa có đơn đặt phòng nào. <a asp-action="CreateModern" style="color: #00236f; font-weight: 600;">Tạo đơn mới</a></p>
+            <p style="color: #757682; font-size: 1.125rem;">Chưa có đơn đặt phòng nào.</p>
         </div>
     }
 </div>

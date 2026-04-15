@@ -1,0 +1,119 @@
+@model WebKhachSan.Models.NhanVien
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Chi Tiết Nhân Viên";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="h3 mb-0" style="color: var(--primary); font-weight: 800; font-family: 'Manrope';">
+                        👤 Chi Tiết Nhân Viên
+                    </h1>
+                    <p class="text-muted small mt-2">Thông tin chi tiết: @Model.TenNhanVien</p>
+                </div>
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Quay lại
+                </a>
+            </div>
+
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header" style="background: linear-gradient(135deg, #f8f9ff, #e6eeff); border-bottom: 2px solid #e6eeff;">
+                    <h5 style="color: #00236f; font-weight: 700; margin: 0;">Thông Tin Cơ Bản</h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        <div class="col-12 col-md-6">
+                            <label style="font-weight: 600; color: #6c757d; font-size: 0.85rem; text-transform: uppercase;">Mã Nhân Viên</label>
+                            <div style="font-size: 1.25rem; font-weight: 700; color: #00236f;">@Model.MaNhanVien</div>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label style="font-weight: 600; color: #6c757d; font-size: 0.85rem; text-transform: uppercase;">Tên Nhân Viên</label>
+                            <div style="font-size: 1.25rem; font-weight: 700; color: #0d1c2e;">@Model.TenNhanVien</div>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label style="font-weight: 600; color: #6c757d; font-size: 0.85rem; text-transform: uppercase;">Chức Vụ</label>
+                            <div style="font-size: 1rem; color: #0d1c2e;">
+                                <span style="background: #e6eeff; color: #00236f; padding: 0.5rem 0.75rem; border-radius: 0.4rem; display: inline-block;">
+                                    @Model.ChucVu
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label style="font-weight: 600; color: #6c757d; font-size: 0.85rem; text-transform: uppercase;">Ngày Sinh</label>
+                            <div style="font-size: 1rem; color: #0d1c2e;">
+                                @(Model.NgaySinh?.ToString("dd/MM/yyyy") ?? "Chưa cập nhật")
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label style="font-weight: 600; color: #6c757d; font-size: 0.85rem; text-transform: uppercase;">Điện Thoại</label>
+                            <div style="font-size: 1rem; color: #0d1c2e;">
+                                <a href="tel:@Model.DienThoai">@Model.DienThoai</a>
+                            </div>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.DiaChi))
+                        {
+                            <div class="col-12">
+                                <label style="font-weight: 600; color: #6c757d; font-size: 0.85rem; text-transform: uppercase;">Địa Chỉ</label>
+                                <div style="font-size: 1rem; color: #0d1c2e;">@Model.DiaChi</div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.HoaDons != null && Model.HoaDons.Any())
+            {
+                <div class="card shadow-sm border-0">
+                    <div class="card-header" style="background: linear-gradient(135deg, #f8f9ff, #e6eeff); border-bottom: 2px solid #e6eeff;">
+                        <h5 style="color: #00236f; font-weight: 700; margin: 0;">
+                            📊 Hóa Đơn (@Model.HoaDons.Count())
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover mb-0">
+                                <thead style="background: #f8f9ff;">
+                                    <tr>
+                                        <th style="color: #00236f; font-weight: 700;">Mã Hóa Đơn</th>
+                                        <th style="color: #00236f; font-weight: 700;">Ngày Lập</th>
+                                        <th style="color: #00236f; font-weight: 700; text-align: right;">Tổng Tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var hoaDon in Model.HoaDons)
+                                    {
+                                        <tr>
+                                            <td>@hoaDon.MaHoaDon</td>
+                                            <td>@hoaDon.NgayLap?.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td style="text-align: right; color: #00236f; font-weight: 700;">
+                                                @hoaDon.TongTien?.ToString("N0") ₫
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="d-flex gap-2 mt-4">
+                <a asp-action="Edit" asp-route-id="@Model.MaNhanVien" class="btn btn-lg btn-warning flex-grow-1">
+                    <i class="bi bi-pencil"></i> Chỉnh Sửa
+                </a>
+                <a asp-action="Delete" asp-route-id="@Model.MaNhanVien" class="btn btn-lg btn-danger flex-grow-1">
+                    <i class="bi bi-trash"></i> Xóa
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

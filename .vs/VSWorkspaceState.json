@@ -8,6 +8,6 @@
     "\\Views\\NhanVien",
     "\\Views\\Phong"
   ],
-  "SelectedNode": "\\Views\\Home\\Index.cshtml",
+  "SelectedNode": "\\Controllers\\AccountController.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -1,0 +1,144 @@
+@model WebKhachSan.Models.HoaDon
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Chỉnh Sửa Hóa Đơn";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="h3 mb-0" style="color: var(--primary); font-weight: 800; font-family: 'Manrope';">
+                        ✏️ Chỉnh Sửa Hóa Đơn
+                    </h1>
+                    <p class="text-muted small mt-2">Cập nhật thông tin hóa đơn: @Model.MaHoaDon</p>
+                </div>
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Quay lại
+                </a>
+            </div>
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <form asp-action="Edit" method="post" class="needs-validation" novalidate>
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            <strong>Lỗi!</strong> Vui lòng kiểm tra lại thông tin
+                        </div>
+
+                        <div class="row g-3">
+                            <!-- Mã Hóa Đơn (Disabled) -->
+                            <div class="col-12 col-md-6">
+                                <label for="MaHoaDon" class="form-label" style="font-weight: 600; color: #00236f;">
+                                    Mã Hóa Đơn (Không thể thay đổi)
+                                </label>
+                                <input type="text" class="form-control form-control-lg" id="MaHoaDon" 
+                                       asp-for="MaHoaDon" disabled>
+                            </div>
+
+                            <!-- Mã Thuê Phòng -->
+                            <div class="col-12 col-md-6">
+                                <label for="MaThuePhong" class="form-label" style="font-weight: 600; color: #00236f;">
+                                    Mã Thuê Phòng <span style="color: #dc3545;">*</span>
+                                </label>
+                                <select class="form-select form-select-lg" id="MaThuePhong" asp-for="MaThuePhong" required>
+                                    <option value="">-- Chọn lịch thuê phòng --</option>
+                                    @if (ViewBag.ThuePhongs != null)
+                                    {
+                                        @foreach (var tp in ViewBag.ThuePhongs)
+                                        {
+                                            <option value="@tp.MaThuePhong" selected="@(tp.MaThuePhong == Model.MaThuePhong)">
+                                                @tp.MaThuePhong - @tp.MaKhachHangNavigation?.TenKhachHang 
+                                                (@tp.NgayNhan?.ToString("dd/MM/yyyy") - @tp.NgayTra?.ToString("dd/MM/yyyy"))
+                                            </option>
+                                        }
+                                    }
+                                </select>
+                                <span asp-validation-for="MaThuePhong" class="invalid-feedback"></span>
+                            </div>
+
+                            <!-- Mã Nhân Viên -->
+                            <div class="col-12 col-md-6">
+                                <label for="MaNhanVien" class="form-label" style="font-weight: 600; color: #00236f;">
+                                    Nhân Viên Lập Hóa Đơn <span style="color: #dc3545;">*</span>
+                                </label>
+                                <select class="form-select form-select-lg" id="MaNhanVien" asp-for="MaNhanVien" required>
+                                    <option value="">-- Chọn nhân viên --</option>
+                                    @if (ViewBag.NhanViens != null)
+                                    {
+                                        @foreach (var nv in ViewBag.NhanViens)
+                                        {
+                                            <option value="@nv.MaNhanVien" selected="@(nv.MaNhanVien == Model.MaNhanVien)">
+                                                @nv.TenNhanVien (@nv.ChucVu)
+                                            </option>
+                                        }
+                                    }
+                                </select>
+                                <span asp-validation-for="MaNhanVien" class="invalid-feedback"></span>
+                            </div>
+
+                            <!-- Ngày Lập -->
+                            <div class="col-12 col-md-6">
+                                <label for="NgayLap" class="form-label" style="font-weight: 600; color: #00236f;">
+                                    Ngày Lập <span style="color: #dc3545;">*</span>
+                                </label>
+                                <input type="datetime-local" class="form-control form-control-lg" id="NgayLap" 
+                                       asp-for="NgayLap" required>
+                                <span asp-validation-for="NgayLap" class="invalid-feedback"></span>
+                            </div>
+
+                            <!-- Tổng Tiền -->
+                            <div class="col-12">
+                                <label for="TongTien" class="form-label" style="font-weight: 600; color: #00236f;">
+                                    Tổng Tiền <span style="color: #dc3545;">*</span>
+                                </label>
+                                <div class="input-group input-group-lg">
+                                    <input type="number" class="form-control" id="TongTien" 
+                                           asp-for="TongTien" placeholder="Nhập tổng tiền" step="0.01" required>
+                                    <span class="input-group-text" style="background: #f8f9ff; border: 1px solid #dee2e6;">
+                                        <strong style="color: #00236f;">VND</strong>
+                                    </span>
+                                </div>
+                                <span asp-validation-for="TongTien" class="invalid-feedback"></span>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="col-12 pt-3 d-flex gap-2">
+                                <button type="submit" class="btn btn-lg flex-grow-1" 
+                                        style="background: linear-gradient(135deg, #00236f, #1e3a8a); color: white; font-weight: 600;">
+                                    <i class="bi bi-check-circle"></i> Lưu Thay Đổi
+                                </button>
+                                <a asp-action="Delete" asp-route-id="@Model.MaHoaDon" class="btn btn-lg btn-outline-danger">
+                                    <i class="bi bi-trash"></i> Xóa
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    .form-control-lg, .form-select-lg {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: #00236f;
+        box-shadow: 0 0 0 0.2rem rgba(0, 35, 111, 0.25);
+    }
+    .input-group-lg .form-control, .input-group-lg .input-group-text {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+    }
+</style>
