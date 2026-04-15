@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "k3rhaV9vgWGOxso958P60HshZRHXWGEvVRtMvW1tls35x9opDE8M4qrUw+FY4LiEVTKSEkjLMXUQEtgYu69q3Q==",
+  "dgSpecHash": "rMyIyjUag8G5XLAY5LUdvV5wrU10zm64iF9thCOc+cY2y25xX3BoLT2SDtbYEFIzO4Lml0LoEQExYpnJOequoQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\TTTN\\hotel-management-system\\hotel-management-system\\WebKhachSan.csproj",
+  "projectFilePath": "C:\\Users\\ADMIN\\OneDrive\\Máy tính\\hotel-management-system\\WebKhachSan.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

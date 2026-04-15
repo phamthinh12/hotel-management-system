@@ -356,27 +356,28 @@ namespace WebKhachSan.Controllers
 
                 // Get booked rooms in the date range
                 var bookedRoomIds = await _context.ThuePhongs
+                    .Include(tp => tp.CtthuePhongs)
                     .Where(tp => 
-                        tp.NgayNhan == null || tp.NgayTra == null ||
-                        (tp.NgayNhan < ngayTra && tp.NgayTra > ngayNhan)
+                        tp.NgayNhan < ngayTra && 
+                        tp.NgayTra > ngayNhan
                     )
                     .SelectMany(tp => tp.CtthuePhongs)
+                    .Where(ct => ct.MaPhongNavigation.MaLoaiPhong == request.MaLoaiPhong)
                     .Select(ct => ct.MaPhong)
                     .Distinct()
                     .ToListAsync();
 
-                // Get available rooms of the selected room type
+                // Get available rooms
                 var availableRooms = await _context.Phongs
                     .Where(p => p.MaLoaiPhong == request.MaLoaiPhong && !bookedRoomIds.Contains(p.MaPhong))
                     .Select(p => new { p.MaPhong, p.MaLoaiPhong, TenLoaiPhong = p.MaLoaiPhongNavigation.TenLoaiPhong })
                     .ToListAsync();
 
-                // Get pricing for the room type
+                // Get pricing
                 var giaPhong = await _context.GiaPhongs
                     .Where(gp => gp.MaLoaiPhong == request.MaLoaiPhong && 
                                  gp.NgayBatDau <= DateTime.Now && 
-                                 (gp.NgayKetThuc == null || gp.NgayKetThuc >= DateTime.Now))
-                    .OrderByDescending(gp => gp.NgayBatDau)
+                                 gp.NgayKetThuc >= DateTime.Now)
                     .FirstOrDefaultAsync();
 
                 double gia = giaPhong?.Gia ?? 0.0;
@@ -421,13 +422,8 @@ namespace WebKhachSan.Controllers
     // Helper classes
     public class RoomSearchRequest
     {
-        [JsonPropertyName("maLoaiPhong")]
         public string MaLoaiPhong { get; set; }
-        
-        [JsonPropertyName("ngayNhan")]
         public DateTime NgayNhan { get; set; }
-        
-        [JsonPropertyName("ngayTra")]
         public DateTime NgayTra { get; set; }
     }
 

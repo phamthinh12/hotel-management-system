@@ -1,8 +1,10 @@
 @model List<WebKhachSan.Models.LoaiPhong>
+
 @{
     Layout = null;
 }
-<!DOCTYPE html> 
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8"/>
@@ -230,10 +232,7 @@
     <nav class="navbar navbar-expand-lg navbar-light navbar-custom sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#" style="color: var(--primary); font-size: 1.5rem;">✨ Aura</a>
-            <div class="ms-auto" style="display: flex; gap: 1rem; align-items: center;">
-                <a href="#searchCard" class="btn btn-sm btn-outline-primary" style="font-weight: 700;">
-                    📅 Đặt Phòng Ngay
-                </a>
+            <div class="ms-auto">
                 <a href="/Account/Login" class="btn btn-sm" style="background: linear-gradient(135deg, var(--primary), var(--primary-container)); color: white; font-weight: 700;">
                     Quản Lý Đặt Phòng
                 </a>
@@ -252,7 +251,7 @@
     <!-- Search Section -->
     <section class="py-5" style="padding-top: 2rem;">
         <div class="container">
-            <div class="search-card" id="searchCard">
+            <div class="search-card">
                 <h5 style="font-weight: 700; color: var(--primary); margin-bottom: 2rem;">🔍 TÌM PHÒNG TRỐNG</h5>
                 <div class="row g-4">
                     <div class="col-12 col-md-3">
@@ -421,10 +420,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ maLoaiPhong: maLoaiPhong, ngayNhan: ngayNhan, ngayTra: ngayTra })
             })
-            .then(r => {
-                if (!r.ok) throw new Error('Lỗi máy chủ: ' + r.status);
-                return r.json();
-            })
+            .then(r => r.json())
             .then(data => {
                 document.getElementById('loading').style.display = 'none';
                 if (data.success && data.phongTrongs.length > 0) {
@@ -455,7 +451,6 @@
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('noResults').style.display = 'block';
                 console.error('Lỗi:', e);
-                alert('❌ Lỗi tìm kiếm phòng: ' + e.message);
             });
         }
 
@@ -489,15 +484,12 @@
             const ngayTra = document.getElementById('hiddenNgayTra').value;
 
             // Tạo khách hàng
-            fetch('/KhachHang/CreateFromPublic', {
+            fetch('/KhachHang/Create', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ tenKhachHang: tenKhach, dienThoai: sdt, diaChi: diaChi })
             })
-            .then(r => {
-                if (!r.ok) throw new Error('Lỗi máy chủ: ' + r.status);
-                return r.json();
-            })
+            .then(r => r.json())
             .then(cust => {
                 if (cust.success) {
                     // Tạo đơn đặt phòng
@@ -513,12 +505,9 @@
                             ghiChu: ''
                         })
                     });
-                } else throw new Error(cust.message || 'Tạo khách hàng thất bại');
+                } else throw new Error(cust.message);
             })
-            .then(r => {
-                if (!r.ok) throw new Error('Lỗi máy chủ: ' + r.status);
-                return r.json();
-            })
+            .then(r => r.json())
             .then(booking => {
                 if (booking.success) {
                     alert('✅ Đặt phòng thành công!\n\nMã đơn: ' + booking.maDatPhong + '\n\nChúng tôi sẽ liên hệ trong 24 giờ để xác nhận.');

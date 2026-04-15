@@ -1,15 +1,10 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Text.Json.Serialization;
 using WebKhachSan.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-    });
+builder.Services.AddControllersWithViews();
 
 // Add DbContext
 builder.Services.AddDbContext<QuanLyKhachSanContext>();

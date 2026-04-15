@@ -100,64 +100,6 @@ namespace WebKhachSan.Controllers
             return View(khachHang);
         }
 
-        // POST: KhachHang/CreateFromPublic - API endpoint cho public booking
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<IActionResult> CreateFromPublic([FromBody] CreateCustomerRequest request)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(request.TenKhachHang) || string.IsNullOrEmpty(request.DienThoai))
-                {
-                    return Json(new { success = false, message = "Tên khách hàng và điện thoại là bắt buộc" });
-                }
-
-                // Kiểm tra số điện thoại có tồn tại không
-                var existingCustomer = await _context.KhachHangs
-                    .FirstOrDefaultAsync(k => k.DienThoai == request.DienThoai);
-
-                if (existingCustomer != null)
-                {
-                    return Json(new { success = true, maKhachHang = existingCustomer.MaKhachHang });
-                }
-
-                // Tạo khách hàng mới
-                var lastCustomer = await _context.KhachHangs
-                    .OrderByDescending(k => k.MaKhachHang)
-                    .FirstOrDefaultAsync();
-
-                int nextNumber = 1;
-                if (lastCustomer != null && !string.IsNullOrEmpty(lastCustomer.MaKhachHang))
-                {
-                    var lastNum = int.TryParse(lastCustomer.MaKhachHang.Replace("KH", ""), out int num) ? num : 0;
-                    nextNumber = lastNum + 1;
-                }
-
-                string maKhachHang = "KH" + nextNumber.ToString("D6");
-
-                var khachHang = new KhachHang
-                {
-                    MaKhachHang = maKhachHang,
-                    TenKhachHang = request.TenKhachHang,
-                    DienThoai = request.DienThoai,
-                    DiaChi = request.DiaChi,
-                    Cccd = request.Cccd
-                };
-
-                _context.Add(khachHang);
-                await _context.SaveChangesAsync();
-
-                _logger.LogInformation("Khách hàng công khai tạo mới: {0} - {1}", khachHang.MaKhachHang, khachHang.TenKhachHang);
-
-                return Json(new { success = true, maKhachHang = khachHang.MaKhachHang });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Lỗi khi tạo khách hàng công khai");
-                return Json(new { success = false, message = "Lỗi máy chủ: " + ex.Message });
-            }
-        }
-
         // GET: KhachHang/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
@@ -359,6 +301,5 @@ namespace WebKhachSan.Controllers
         public string TenKhachHang { get; set; }
         public string DienThoai { get; set; }
         public string DiaChi { get; set; }
-        public string Cccd { get; set; }
     }
 }

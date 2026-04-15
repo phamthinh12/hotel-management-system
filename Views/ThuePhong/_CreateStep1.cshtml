@@ -1,0 +1,81 @@
+@model ThuePhongStep1ViewModel
+
+<form id="createStep1Form" method="post" asp-controller="ThuePhong" asp-action="CreateStep1" novalidate>
+    @Html.AntiForgeryToken()
+
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+    <div class="text-center mb-4">
+        <div class="step-indicator">
+            <span class="step active">1</span>
+            <span class="step-line"></span>
+            <span class="step">2</span>
+            <span class="step-line"></span>
+            <span class="step">3</span>
+        </div>
+        <h5 class="mt-2 mb-0">Thông tin khách hàng</h5>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label asp-for="TenKhachHang" class="form-label fw-semibold">
+                Họ và tên <span class="text-danger">*</span>
+            </label>
+            <input asp-for="TenKhachHang" class="form-control" placeholder="Nguyễn Văn A" maxlength="100" />
+            <span asp-validation-for="TenKhachHang" class="text-danger small"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="DienThoai" class="form-label fw-semibold">
+                Điện thoại <span class="text-danger">*</span>
+            </label>
+            <input asp-for="DienThoai" class="form-control" placeholder="0901234567" maxlength="15" />
+            <span asp-validation-for="DienThoai" class="text-danger small"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Cccd" class="form-label fw-semibold">CCCD</label>
+            <input asp-for="Cccd" class="form-control" placeholder="Tùy chọn" inputmode="numeric" maxlength="12" />
+            <span asp-validation-for="Cccd" class="text-danger small"></span>
+            <div class="form-text">Nếu CCCD đã tồn tại, hệ thống sẽ cập nhật thông tin.</div>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="DiaChi" class="form-label fw-semibold">Địa chỉ</label>
+            <input asp-for="DiaChi" class="form-control" placeholder="Địa chỉ khách hàng" maxlength="255" />
+            <span asp-validation-for="DiaChi" class="text-danger small"></span>
+        </div>
+    </div>
+
+    <div class="alert alert-info mt-3 mb-0">
+        <i class="bi bi-info-circle me-2"></i>
+        Nếu CCCD đã tồn tại trong hệ thống, hệ thống sẽ tự động cập nhật thông tin khách hàng.
+    </div>
+</form>
+
+<style>
+    .step-indicator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+    }
+    .step {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #e9ecef;
+        color: #6c757d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .step.active {
+        background: #0d6efd;
+        color: white;
+    }
+    .step-line {
+        width: 60px;
+        height: 3px;
+        background: #e9ecef;
+    }
+</style>
