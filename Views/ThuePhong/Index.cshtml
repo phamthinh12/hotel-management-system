@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebKhachSan.Models.ThuePhong>
+@model IEnumerable<WebKhachSan.Models.ThuePhong>
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -19,7 +19,7 @@
             <h2 class="mb-1 fw-bold">Phiếu thuê phòng</h2>
             <p class="text-muted mb-0">Quản lý danh sách khách thuê offline tại quầy lễ tân.</p>
         </div>
-        <button type="button" class="btn btn-primary js-open-available-rooms">
+        <button type="button" class="btn btn-primary js-thue-phong-moi">
             <i class="bi bi-plus-circle"></i> Thuê phòng mới
         </button>
     </div>
@@ -36,6 +36,7 @@
                         <th>Ngày trả</th>
                         <th class="text-end">Giá thuê</th>
                         <th class="text-center">Trạng thái</th>
+                        <th class="text-center">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,13 +62,21 @@
                                 <td class="text-center">
                                     <span class="badge @(item.NgayTra.HasValue ? "bg-secondary" : "bg-success")">@trangThai</span>
                                 </td>
+                                <td class="text-center">
+                                    @if (!item.NgayTra.HasValue)
+                                    {
+                                        <button type="button" class="btn btn-sm btn-outline-danger js-tra-phong" data-id="@item.MaThuePhong">
+                                            <i class="bi bi-box-arrow-left"></i> Trả phòng
+                                        </button>
+                                    }
+                                </td>
                             </tr>
                         }
                     }
                     else
                     {
                         <tr>
-                            <td colspan="7" class="text-center py-5 text-muted">
+                            <td colspan="8" class="text-center py-5 text-muted">
                                 <i class="bi bi-inbox" style="font-size: 2rem;"></i>
                                 <p class="mt-3 mb-0">Chưa có phiếu thuê phòng nào.</p>
                             </td>
@@ -78,3 +87,203 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Thuê Phòng Mới -->
+<div class="modal fade" id="thuePhongModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thuê Phòng Mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4" id="thuePhongModalBody">
+            </div>
+            <div class="modal-footer" id="thuePhongModalFooter">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Trả Phòng -->
+<div class="modal fade" id="traPhongModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Trả Phòng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="traPhongModalBody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmTraPhong">
+                    <i class="bi bi-check-circle"></i> Xác nhận trả phòng
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var thuePhongModal;
+            var traPhongModal;
+
+            // Mở modal thuê phòng mới - Bước 1
+            $(document).on('click', '.js-thue-phong-moi', function () {
+                $.get('/ThuePhong/CreateStep1', function (html) {
+                    $('#thuePhongModalBody').html(html);
+                    $('#thuePhongModalFooter').html(
+                        '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>' +
+                        '<button type="button" class="btn btn-primary" id="btnStep1Next">Tiếp tục <i class="bi bi-arrow-right"></i></button>'
+                    );
+                    thuePhongModal = new bootstrap.Modal($('#thuePhongModal'));
+                    thuePhongModal.show();
+                });
+            });
+
+            // Tiếp tục bước 1 -> Bước 2
+            $(document).on('click', '#btnStep1Next', function () {
+                var form = $('#createStep1Form');
+                var formData = form.serialize();
+                $.ajax({
+                    url: '/ThuePhong/CreateStep1',
+                    type: 'POST',
+                    data: formData,
+                    success: function (html) {
+                        if ($(html).find('.alert-danger').length > 0) {
+                            $('#thuePhongModalBody').html(html);
+                        } else {
+                            $('#thuePhongModalBody').html(html);
+                            $('#thuePhongModalFooter').html(
+                                '<button type="button" class="btn btn-secondary" id="btnStep2Back"><i class="bi bi-arrow-left"></i> Quay lại</button>' +
+                                '<button type="button" class="btn btn-primary" id="btnStep2Next">Tiếp tục <i class="bi bi-arrow-right"></i></button>'
+                            );
+                        }
+                    },
+                    error: function () {
+                        toastr.error('Có lỗi xảy ra. Vui lòng thử lại.');
+                    }
+                });
+            });
+
+            // Quay lại bước 1
+            $(document).on('click', '#btnStep2Back', function () {
+                $.get('/ThuePhong/CreateStep1', function (html) {
+                    $('#thuePhongModalBody').html(html);
+                    $('#thuePhongModalFooter').html(
+                        '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>' +
+                        '<button type="button" class="btn btn-primary" id="btnStep1Next">Tiếp tục <i class="bi bi-arrow-right"></i></button>'
+                    );
+                });
+            });
+
+            // Tiếp tục bước 2 -> Bước 3 (Xác nhận)
+            $(document).on('click', '#btnStep2Next', function () {
+                var form = $('#createStep2Form');
+                var formData = form.serialize();
+                $.ajax({
+                    url: '/ThuePhong/CreateStep2',
+                    type: 'POST',
+                    data: formData,
+                    success: function (html) {
+                        if ($(html).find('.alert-danger').length > 0) {
+                            $('#thuePhongModalBody').html(html);
+                        } else {
+                            $('#thuePhongModalBody').html(html);
+                            $('#thuePhongModalFooter').html(
+                                '<button type="button" class="btn btn-secondary" id="btnStep3Back"><i class="bi bi-arrow-left"></i> Quay lại</button>' +
+                                '<button type="button" class="btn btn-success" id="btnConfirmThue"><i class="bi bi-check-circle"></i> Xác nhận thuê</button>'
+                            );
+                        }
+                    },
+                    error: function () {
+                        toastr.error('Có lỗi xảy ra. Vui lòng thử lại.');
+                    }
+                });
+            });
+
+            // Quay lại bước 2
+            $(document).on('click', '#btnStep3Back', function () {
+                var form = $('#createConfirmForm');
+                var formData = form.serialize();
+                $.ajax({
+                    url: '/ThuePhong/CreateStep2',
+                    type: 'POST',
+                    data: formData,
+                    success: function (html) {
+                        $('#thuePhongModalBody').html(html);
+                        $('#thuePhongModalFooter').html(
+                            '<button type="button" class="btn btn-secondary" id="btnStep2Back"><i class="bi bi-arrow-left"></i> Quay lại</button>' +
+                            '<button type="button" class="btn btn-primary" id="btnStep2Next">Tiếp tục <i class="bi bi-arrow-right"></i></button>'
+                        );
+                    },
+                    error: function () {
+                        toastr.error('Có lỗi xảy ra. Vui lòng thử lại.');
+                    }
+                });
+            });
+
+            // Xác nhận thuê phòng
+            $(document).on('click', '#btnConfirmThue', function () {
+                var form = $('#createConfirmForm');
+                var formData = form.serialize();
+                $.ajax({
+                    url: '/ThuePhong/CreateFinal',
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            thuePhongModal.hide();
+                            toastr.success(response.message);
+                            setTimeout(function () {
+                                location.reload();
+                            }, 1500);
+                        } else {
+                            toastr.error(response.message);
+                        }
+                    },
+                    error: function () {
+                        toastr.error('Có lỗi xảy ra. Vui lòng thử lại.');
+                    }
+                });
+            });
+
+            // Mở modal trả phòng
+            $(document).on('click', '.js-tra-phong', function () {
+                var id = $(this).data('id');
+                $.get('/ThuePhong/TraPhong', { id: id }, function (html) {
+                    $('#traPhongModalBody').html(html);
+                    traPhongModal = new bootstrap.Modal($('#traPhongModal'));
+                    traPhongModal.show();
+                });
+            });
+
+            // Xác nhận trả phòng
+            $(document).on('click', '#btnConfirmTraPhong', function () {
+                var form = $('#traPhongForm');
+                var formData = form.serialize();
+                $.ajax({
+                    url: '/ThuePhong/TraPhong',
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            traPhongModal.hide();
+                            toastr.success(response.message);
+                            setTimeout(function () {
+                                location.reload();
+                            }, 1000);
+                        } else {
+                            $('#traPhongModalBody').html(response);
+                        }
+                    },
+                    error: function () {
+                        toastr.error('Có lỗi xảy ra. Vui lòng thử lại.');
+                    }
+                });
+            });
+        });
+    </script>
+}

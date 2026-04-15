@@ -1,0 +1,147 @@
+@model ThuePhongStep2ViewModel
+
+<form id="createStep2Form" method="post" asp-controller="ThuePhong" asp-action="CreateStep2" novalidate>
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="TenKhachHang" value="@Model.TenKhachHang" />
+    <input type="hidden" name="DienThoai" value="@Model.DienThoai" />
+    <input type="hidden" name="DiaChi" value="@Model.DiaChi" />
+    <input type="hidden" name="Cccd" value="@Model.Cccd" />
+    <input type="hidden" name="NgayNhan" value="@Model.NgayNhan?.ToString("yyyy-MM-dd")" />
+
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+    <div class="text-center mb-4">
+        <div class="step-indicator">
+            <span class="step completed">1</span>
+            <span class="step-line active"></span>
+            <span class="step active">2</span>
+            <span class="step-line"></span>
+            <span class="step">3</span>
+        </div>
+        <h5 class="mt-2 mb-0">Chọn phòng</h5>
+        <p class="text-muted small mb-0">Khách hàng: <strong>@Model.TenKhachHang</strong> - @Model.DienThoai</p>
+    </div>
+
+    @if (Model.Phongs.Any())
+    {
+        <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-muted">Đã chọn: <strong id="selectedCount">0</strong> phòng</span>
+                <button type="button" class="btn btn-sm btn-outline-primary" id="selectAllRooms">Chọn tất cả</button>
+            </div>
+        </div>
+
+        <div class="room-list" style="max-height: 400px; overflow-y: auto;">
+            @foreach (var phong in Model.Phongs)
+            {
+                <div class="room-card mb-2 p-3 border rounded">
+                    <div class="form-check">
+                        <input class="form-check-input room-checkbox" type="checkbox" name="SelectedPhongs" 
+                               value="@phong.MaPhong" id="phong_@phong.MaPhong"
+                               onchange="updateSelectedCount()" />
+                        <label class="form-check-label w-100" for="phong_@phong.MaPhong">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong class="fs-5">@phong.SoPhong</strong>
+                                    <span class="badge bg-info ms-2">@phong.TenLoaiPhong</span>
+                                    <small class="text-muted d-block">@phong.MaPhong</small>
+                                </div>
+                                <div class="text-end">
+                                    <div class="fw-bold text-success fs-6">@(phong.GiaHienTai?.ToString("N0") ?? "0") VND</div>
+                                    <small class="text-muted">/ ngày</small>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5 text-muted">
+            <i class="bi bi-door-closed" style="font-size: 3rem;"></i>
+            <p class="mt-3 mb-0">Không có phòng trống nào.</p>
+        </div>
+    }
+</form>
+
+<style>
+    .step-indicator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+    }
+    .step {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #e9ecef;
+        color: #6c757d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .step.active {
+        background: #0d6efd;
+        color: white;
+    }
+    .step.completed {
+        background: #198754;
+        color: white;
+    }
+    .step-line {
+        width: 60px;
+        height: 3px;
+        background: #e9ecef;
+    }
+    .step-line.active {
+        background: #198754;
+    }
+    .room-card {
+        transition: all 0.2s;
+    }
+    .room-card:hover {
+        background: #f8f9fa;
+    }
+    .room-card.selected {
+        border-color: #0d6efd;
+        background: #e7f1ff;
+    }
+    .form-check-input:checked + .form-check-label .room-card {
+        border-color: #0d6efd;
+        background: #e7f1ff;
+    }
+</style>
+
+<script>
+    function updateSelectedCount() {
+        var count = $('input[name="SelectedPhongs"]:checked').length;
+        $('#selectedCount').text(count);
+        
+        $('.room-checkbox').each(function() {
+            if ($(this).is(':checked')) {
+                $(this).closest('.room-card').addClass('selected');
+            } else {
+                $(this).closest('.room-card').removeClass('selected');
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        $('#selectAllRooms').click(function() {
+            var allChecked = $('.room-checkbox:checked').length === $('.room-checkbox').length;
+            if (allChecked) {
+                $('.room-checkbox').prop('checked', false);
+            } else {
+                $('.room-checkbox').prop('checked', true);
+            }
+            updateSelectedCount();
+        });
+
+        updateSelectedCount();
+    });
+</script>

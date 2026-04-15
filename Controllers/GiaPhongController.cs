@@ -68,6 +68,110 @@ namespace WebKhachSan.Controllers
             });
         }
 
+        [HttpGet]
+        public async Task<IActionResult> BulkSetPrice(DateTime? tuNgay, DateTime? denNgay)
+        {
+            var model = await BuildBulkSetPriceViewModelAsync(tuNgay, denNgay);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BulkSetPrice(BulkPriceInputViewModel model)
+        {
+            if (model.SelectedPhongs == null || !model.SelectedPhongs.Any())
+            {
+                ModelState.AddModelError(string.Empty, "Vui long chon it nhat mot phong.");
+            }
+
+            if (model.Gia <= 0)
+            {
+                ModelState.AddModelError(nameof(model.Gia), "Gia phong phai lon hon 0.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var vm = await BuildBulkSetPriceViewModelAsync(model.NgayBatDau, model.NgayKetThuc);
+                return View(vm);
+            }
+
+            try
+            {
+                var nextNumber = await GetNextMaGiaNumberAsync();
+                var giaPhongs = new List<GiaPhong>();
+                var count = 0;
+
+                foreach (var maPhong in model.SelectedPhongs)
+                {
+                    giaPhongs.Add(new GiaPhong
+                    {
+                        MaGia = $"G{nextNumber + count:D3}",
+                        MaLoaiPhong = model.Phongs.FirstOrDefault(p => p.MaPhong == maPhong)?.MaLoaiPhong,
+                        Gia = model.Gia,
+                        NgayBatDau = model.NgayBatDau,
+                        NgayKetThuc = model.NgayKetThuc
+                    });
+                    count++;
+                }
+
+                _context.GiaPhongs.AddRange(giaPhongs);
+                await _context.SaveChangesAsync();
+
+                _logger.LogInformation("Nguoi dung {User} dat gia hang loat cho {Count} phong, gia {Gia}",
+                    User.Identity?.Name, giaPhongs.Count, model.Gia);
+
+                TempData["Success"] = $"Da dat gia {model.Gia:N0} VND cho {giaPhongs.Count} phong thanh cong.";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Loi khi dat gia phong hang loat");
+                ModelState.AddModelError(string.Empty, "Khong the dat gia phong. Vui long thu lai.");
+                var vm = await BuildBulkSetPriceViewModelAsync(model.NgayBatDau, model.NgayKetThuc);
+                return View(vm);
+            }
+        }
+
+        private async Task<BulkSetPriceViewModel> BuildBulkSetPriceViewModelAsync(DateTime? tuNgay, DateTime? denNgay)
+        {
+            var startDate = tuNgay ?? DateTime.Today;
+            var endDate = denNgay ?? DateTime.Today.AddMonths(1);
+
+            var phongs = await _context.Phongs
+                .Include(p => p.MaLoaiPhongNavigation)
+                .Where(p => p.TrangThai == "Trống" || p.TrangThai == "Có khách")
+                .OrderBy(p => p.MaLoaiPhong)
+                .ThenBy(p => p.SoPhong)
+                .ToListAsync();
+
+            var phongsCoGia = await _context.GiaPhongs
+                .Where(g => g.MaLoaiPhong != null
+                    && g.NgayBatDau <= endDate
+                    && (g.NgayKetThuc == null || g.NgayKetThuc >= startDate))
+                .Select(g => g.MaLoaiPhong)
+                .Distinct()
+                .ToListAsync();
+
+            var phongsChuaCoGia = phongs
+                .Where(p => !phongsCoGia.Contains(p.MaLoaiPhong))
+                .Select(p => new PhongChuaCoGiaViewModel
+                {
+                    MaPhong = p.MaPhong,
+                    SoPhong = p.SoPhong,
+                    MaLoaiPhong = p.MaLoaiPhong ?? string.Empty,
+                    TenLoaiPhong = p.MaLoaiPhongNavigation?.TenLoaiPhong,
+                    Selected = false
+                })
+                .ToList();
+
+            return new BulkSetPriceViewModel
+            {
+                NgayBatDau = startDate,
+                NgayKetThuc = endDate,
+                PhongsChuaCoGia = phongsChuaCoGia
+            };
+        }
+
         public async Task<IActionResult> Create(string? maLoaiPhong)
         {
             await PopulateLoaiPhongAsync(maLoaiPhong);

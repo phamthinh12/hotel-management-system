@@ -1,0 +1,138 @@
+@model ThuePhongConfirmViewModel
+
+<form id="createConfirmForm" method="post" asp-controller="ThuePhong" asp-action="CreateFinal" novalidate>
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="Cccd" value="@Model.Cccd" />
+    <input type="hidden" name="TenKhachHang" value="@Model.TenKhachHang" />
+    <input type="hidden" name="DienThoai" value="@Model.DienThoai" />
+    <input type="hidden" name="DiaChi" value="@Model.DiaChi" />
+    <input type="hidden" name="NgayNhan" value="@Model.NgayNhan.ToString("yyyy-MM-dd")" />
+
+    @for (int i = 0; i < Model.PhongsChon.Count; i++)
+    {
+        <input type="hidden" name="PhongsChon[@i].MaPhong" value="@Model.PhongsChon[i].MaPhong" />
+        <input type="hidden" name="PhongsChon[@i].SoPhong" value="@Model.PhongsChon[i].SoPhong" />
+        <input type="hidden" name="PhongsChon[@i].TenLoaiPhong" value="@Model.PhongsChon[i].TenLoaiPhong" />
+        <input type="hidden" name="PhongsChon[@i].GiaThue" value="@Model.PhongsChon[i].GiaThue" />
+    }
+
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+    <div class="text-center mb-4">
+        <div class="step-indicator">
+            <span class="step completed">1</span>
+            <span class="step-line active"></span>
+            <span class="step completed">2</span>
+            <span class="step-line active"></span>
+            <span class="step active">3</span>
+        </div>
+        <h5 class="mt-2 mb-0">Xác nhận thuê phòng</h5>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header bg-primary text-white">
+            <i class="bi bi-person me-2"></i>Thông tin khách hàng
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-1"><strong>Họ tên:</strong> @Model.TenKhachHang</p>
+                    <p class="mb-1"><strong>Điện thoại:</strong> @Model.DienThoai</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="mb-1"><strong>CCCD:</strong> @(string.IsNullOrEmpty(Model.Cccd) ? "Không có" : Model.Cccd)</p>
+                    <p class="mb-1"><strong>Địa chỉ:</strong> @(string.IsNullOrEmpty(Model.DiaChi) ? "Không có" : Model.DiaChi)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header bg-primary text-white">
+            <i class="bi bi-door-open me-2"></i>Phòng thuê (@Model.PhongsChon.Count phòng)
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-3">Phòng</th>
+                        <th>Loại phòng</th>
+                        <th class="text-end pe-3">Giá/ngày</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var phong in Model.PhongsChon)
+                    {
+                        <tr>
+                            <td class="ps-3"><strong>@phong.SoPhong</strong></td>
+                            <td>@phong.TenLoaiPhong</td>
+                            <td class="text-end pe-3 text-success fw-semibold">@(phong.GiaThue?.ToString("N0") ?? "0") VND</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot class="table-light">
+                    <tr>
+                        <td colspan="2" class="text-end"><strong>Tổng cộng:</strong></td>
+                        <td class="text-end pe-3">
+                            <strong class="text-danger fs-5">@Model.TongTien.ToString("N0") VND</strong>
+                            <small class="text-muted d-block">/ ngày</small>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <i class="bi bi-calendar me-2"></i>Ngày nhận phòng
+        </div>
+        <div class="card-body">
+            <p class="mb-0 fs-5">
+                <strong>@Model.NgayNhan.ToString("dddd, dd/MM/yyyy")</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="alert alert-warning mt-3 mb-0">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        Sau khi xác nhận, các phòng sẽ được chuyển sang trạng thái "Có khách".
+    </div>
+</form>
+
+<style>
+    .step-indicator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+    }
+    .step {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #e9ecef;
+        color: #6c757d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .step.active {
+        background: #0d6efd;
+        color: white;
+    }
+    .step.completed {
+        background: #198754;
+        color: white;
+    }
+    .step-line {
+        width: 60px;
+        height: 3px;
+        background: #e9ecef;
+    }
+    .step-line.active {
+        background: #198754;
+    }
+</style>
